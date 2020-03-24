@@ -152,7 +152,8 @@ get_words(A,Temp_words,B,I,K):-
 	I1 is I+1,append(Temp_words,[Word],T_w),get_words(A2,T_w,B,I1,K),!.
 get_words(_,B,B,K,K).
 
-pr5_3:-read_str(A,N),get_words(A,Words,K),write_list_str(Words),write(K).
+pr5_3:-read_str(A,N),get_words(A,Words,K),uniq_el(Words,Uniq_words),count_elems(Words,Uniq_words,Counts),
+		max_in_list(Counts,Imax),el_no(Uniq_words,Imax,Word),write_str(Word).
 
 write_list_str([]):-!.
 write_list_str([H|T]):-write_str(H),nl,write_list_str(T).
@@ -161,14 +162,24 @@ uniq_el(Ref,Res):-uniq_el(Ref,Res,[]).
 uniq_el([],Res,Res):-!.
 uniq_el([H|T],Res,Cur):-check(H,Cur,Cur,R), uniq_el(T,Res,R).
 check(El,[El|_],Ref,Ref):-!.
-check(El,[],Ref,R):-append(Ref,[El],R).
+check(El,[],Ref,R):-append(Ref,[El],R),!.
 check(El,[_|T],Ref,R):-check(El,T,Ref,R).
+
+count_elems(_,[],[]):-!.
+count_elems(A,[H|T],[Cur|Tail]):-count_el(H,A,Cur),count_elems(A,T,Tail).
 
 count_el(El,List,Count):-count_el(El,List,Count,0).
 count_el(_,[],Count,Count):-!.
 count_el(El,[El|T],Count,Cur):-Cur1 is Cur+1, count_el(El,T,Count,Cur1),!.
 count_el(El,[_|T],Count,Cur):-count_el(El,T,Count,Cur).
 
+max_in_list([H|T],Imax):-max_in_list(T,H,1,2,Imax).
+max_in_list([],_,Cur,_,Cur):-!.
+max_in_list([H|T],Max,Cur,Ind,Imax):-H>Max,Ind1 is Ind+1,max_in_list(T,H,Ind,Ind1,Imax),!.
+max_in_list([_|T],Max,Cur,Ind,Imax):-Ind1 is Ind+1,max_in_list(T,Max,Cur,Ind1,Imax).
+
+
+/* номер максимального элемента в списке номерация с 1 */
 
 
 
