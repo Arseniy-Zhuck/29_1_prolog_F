@@ -157,6 +157,19 @@ pr5_3:-read_str(A,N),get_words(A,Words,K),write_list_str(Words),write(K).
 write_list_str([]):-!.
 write_list_str([H|T]):-write_str(H),nl,write_list_str(T).
 
+uniq_el(Ref,Res):-uniq_el(Ref,Res,[]).
+uniq_el([],Res,Res):-!.
+uniq_el([H|T],Res,Cur):-check(H,Cur,Cur,R), uniq_el(T,Res,R).
+check(El,[El|_],Ref,Ref):-!.
+check(El,[],Ref,R):-append(Ref,[El],R).
+check(El,[_|T],Ref,R):-check(El,T,Ref,R).
+
+count_el(El,List,Count):-count_el(El,List,Count,0).
+count_el(_,[],Count,Count):-!.
+count_el(El,[El|T],Count,Cur):-Cur1 is Cur+1, count_el(El,T,Count,Cur1),!.
+count_el(El,[_|T],Count,Cur):-count_el(El,T,Count,Cur).
+
+
 
 
 
