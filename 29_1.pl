@@ -179,7 +179,7 @@ max_in_list([H|T],Max,Cur,Ind,Imax):-H>Max,Ind1 is Ind+1,max_in_list(T,H,Ind,Ind
 max_in_list([_|T],Max,Cur,Ind,Imax):-Ind1 is Ind+1,max_in_list(T,Max,Cur,Ind1,Imax).
 
 
-pr5_6:-see('111.txt'),read(A),seen,write(A).
+pr5_6:-see('c:/Prolog/29_1_prolog_F/1111.txt'),read(A),seen,write(A).
 
 /* номер максимального элемента в списке номерация с 1 */
 
