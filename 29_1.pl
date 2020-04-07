@@ -178,10 +178,45 @@ max_in_list([],_,Cur,_,Cur):-!.
 max_in_list([H|T],Max,Cur,Ind,Imax):-H>Max,Ind1 is Ind+1,max_in_list(T,H,Ind,Ind1,Imax),!.
 max_in_list([_|T],Max,Cur,Ind,Imax):-Ind1 is Ind+1,max_in_list(T,Max,Cur,Ind1,Imax).
 
+read_str_f(A,N,Flag):-get0(X),r_str_f(X,A,[],N,0,Flag).
+r_str_f(-1,A,A,N,N,0):-!.
+r_str_f(10,A,A,N,N,1):-!.
+r_str_f(X,A,B,N,K,Flag):-K1 is K+1,append(B,[X],B1),get0(X1),r_str_f(X1,A,B1,N,K1,Flag).
 
-pr5_6:-see('c:/Prolog/29_1_prolog_F/1111.txt'),read(A),seen,write(A).
+read_list_str(List,List_len):-read_str_f(A,N,Flag),r_l_s(List,List_len,[A],[N],Flag).
+r_l_s(List,List_len,List,List_len,0):-!.
+r_l_s(List,List_len,Cur_list,Cur_list_len,_):-
+	read_str_f(A,N,Flag),append(Cur_list,[A],C_l),append(Cur_list_len,[N],C_l_l),
+	r_l_s(List,List_len,C_l,C_l_l,Flag).
 
+
+
+pr5_6:-	see('c:/Prolog/29_1_prolog_F/29_1.txt'),read_list_str(List,List_len),seen,
+		tell('c:/Prolog/29_1_prolog_F/test.txt'),write_list_str(List),told.
+
+build_all_razm_p:-
+		read_str(A,N),read(K),b_a_rp(A,K,[]).
+		
+b_a_rp(A,0,Perm1):-write_str(Perm1),nl,!,fail.
+b_a_rp(A,N,Perm):-in_list(A,El),N1 is N-1,b_a_rp(A,N1,[El|Perm]).
+
+in_list([El|_],El).
+in_list([_|T],El):-in_list(T,El).
+
+build_all_perm:-
+		read_str(A,N),b_a_r(A,[]).
+
+in_list_exlude([El|T],El,T).
+in_list_exlude([H|T],El,[H|Tail]):-in_list_exlude(T,El,Tail).
+
+b_a_r([],Perm1):-write_str(Perm1),nl,!,fail.
+b_a_r(A,Perm):-in_list_exlude(A,El,A1),b_a_r(A1,[El|Perm]).
 /* номер максимального элемента в списке номерация с 1 */
+build_all_razm:-
+		read_str(A,N),read(K),b_a_r(A,K,[]).
+		
+b_a_r(A,0,Perm1):-write_str(Perm1),nl,!,fail.
+b_a_r(A,N,Perm):-in_list_exlude(A,El),N1 is N-1,b_a_rp(A,N1,[El|Perm]).
 
 
 
