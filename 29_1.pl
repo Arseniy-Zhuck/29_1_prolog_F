@@ -218,6 +218,19 @@ build_all_razm:-
 b_a_r(A,0,Perm1):-write_str(Perm1),nl,!,fail.
 b_a_r(A,N,Perm):-in_list_exlude(A,El),N1 is N-1,b_a_rp(A,N1,[El|Perm]).
 
+sub_set([],[]).
+sub_set([H|Sub_set],[H|Set]):-sub_set(Sub_set,Set).
+sub_set(Sub_set,[H|Set]):-sub_set(Sub_set,Set).
+
+r_list(A,N):-r_list(A,N,0,[]).
+r_list(A,N,N,A):-!.
+r_list(A,N,K,B):-read(X),append(B,[X],B1),K1 is K+1,r_list(A,N,K1,B1).
+
+pr_subset:-read(N),r_list(A,N),sub_set(B,A),write(B),nl,fail.
+
+build_all_sochet:-
+	read_str(A,N),read(K),sochet(B,A,K),write_str(B),nl,fail.
+
 
 
 
