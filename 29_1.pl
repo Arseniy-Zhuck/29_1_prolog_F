@@ -231,7 +231,72 @@ pr_subset:-read(N),r_list(A,N),sub_set(B,A),write(B),nl,fail.
 build_all_sochet:-
 	read_str(A,N),read(K),sochet(B,A,K),write_str(B),nl,fail.
 
+sochet([],_,0).
+sochet([H|Sub_set],[H|Set],K):-K1 is K-1, sochet(Sub_set,Set,K1).
+sochet(Sub_set,[H|Set],K):-sochet(Sub_set,Set,K).
 
+pr7_7:- List[_,_,_,_],
+	(
+	(	(in_list(List,[_,fantic,white]);in_list(List,[_,fantic,grey]);
+		in_list(List,[_,fantic,black])),
+		(in_list(List,[_,murl,white]);in_list(List,[_,murl,grey]);
+		in_list(List,[_,murl,red])),
+		(in_list(List,[_,dru,black]);in_list(List,[_,dru,grey]);
+		in_list(List,[_,dru,red])),
+		(in_list(List,[_,elis,white]);in_list(List,[_,elis,black]);
+		in_list(List,[_,elis,red])),
+		in_list(List,[misha,_,black]),in_list(List,[maksim,murl,_]),
+		in_list(List,[leo,elis,_]),in_list(List,[dima,_,white])
+	);
+	(	(in_list(List,[_,fantic,white]);in_list(List,[_,fantic,grey]);
+		in_list(List,[_,fantic,black])),
+		(in_list(List,[_,murl,white]);in_list(List,[_,murl,grey]);
+		in_list(List,[_,murl,red])),
+		(in_list(List,[_,dru,black]);in_list(List,[_,dru,grey]);
+		in_list(List,[_,dru,red])),
+		(in_list(List,[_,elis,white]);in_list(List,[_,elis,black]);
+		in_list(List,[_,elis,red])),
+		in_list(List,[misha,_,black]),in_list(List,[maksim,murl,_]),
+		(in_list(List,[dima,murl,_]);in_list(List,[dima,dru,_]);
+		in_list(List,[dima,elis,)]))
+	);
+	(
+		(in_list(List,[_,fantic,white]);in_list(List,[_,fantic,grey]);
+		in_list(List,[_,fantic,black])),
+		(in_list(List,[_,murl,white]);in_list(List,[_,murl,grey]);
+		in_list(List,[_,murl,red])),
+		(in_list(List,[_,dru,black]);in_list(List,[_,dru,grey]);
+		in_list(List,[_,dru,red])),
+		(in_list(List,[_,elis,white]);in_list(List,[_,elis,black]);
+		in_list(List,[_,elis,red])),
+		in_list(List,[leo,elis,_]),in_list(List,[dima,_,white]),
+		(in_list(List,[dima,murl,_]);in_list(List,[dima,dru,_]);
+		in_list(List,[dima,elis,)]))
+		
+	);
+	(
+		(in_list(List,[_,fantic,white]);in_list(List,[_,fantic,grey]);
+		in_list(List,[_,fantic,black])),
+		(in_list(List,[_,murl,white]);in_list(List,[_,murl,grey]);
+		in_list(List,[_,murl,red])),
+		in_list(List,[misha,_,black]),in_list(List,[maksim,murl,_]),
+		in_list(List,[leo,elis,_]),in_list(List,[dima,_,white]),
+		(in_list(List,[dima,murl,_]);in_list(List,[dima,dru,_]);
+		in_list(List,[dima,elis,)]))
+		
+	);
+	(
+		(in_list(List,[_,dru,black]);in_list(List,[_,dru,grey]);
+		in_list(List,[_,dru,red])),
+		(in_list(List,[_,elis,white]);in_list(List,[_,elis,black]);
+		in_list(List,[_,elis,red])),
+		in_list(List,[misha,_,black]),in_list(List,[maksim,murl,_]),
+		in_list(List,[leo,elis,_]),in_list(List,[dima,_,white]),
+		(in_list(List,[dima,murl,_]);in_list(List,[dima,dru,_]);
+		in_list(List,[dima,elis,)]))
+	)
+	),
+	write(List).
 
 
 
