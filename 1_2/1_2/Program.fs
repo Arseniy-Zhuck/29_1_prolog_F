@@ -9,8 +9,7 @@ let min2 x y =
     else y
 let sum2 x y = x+y
 let p3 f x y z =
-    let f2 = f x y
-    f f2 z
+    f (f x y) z
 let p1_2 = 
     let a= System.Convert.ToInt32(System.Console.ReadLine())
     let b= System.Convert.ToInt32(System.Console.ReadLine())
