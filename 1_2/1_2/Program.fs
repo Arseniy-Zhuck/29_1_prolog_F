@@ -15,7 +15,7 @@ let p1_2 =
     let a= System.Convert.ToInt32(System.Console.ReadLine())
     let b= System.Convert.ToInt32(System.Console.ReadLine())
     let c= System.Convert.ToInt32(System.Console.ReadLine())
-    (p3 max2 a b c,p3 min2 a b c,p3 sum2 a b c)
+    (p3 max2 a b c, p3 min2 a b c, p3 sum2 a b c)
 
 [<EntryPoint>]
 let main argv = 
