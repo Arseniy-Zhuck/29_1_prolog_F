@@ -235,7 +235,7 @@ sochet([],_,0).
 sochet([H|Sub_set],[H|Set],K):-K1 is K-1, sochet(Sub_set,Set,K1).
 sochet(Sub_set,[H|Set],K):-sochet(Sub_set,Set,K).
 
-pr7_7:- List[_,_,_,_],
+pr7_7:- List=[_,_,_,_],
 	(
 	(	(in_list(List,[_,fantic,white]);in_list(List,[_,fantic,grey]);
 		in_list(List,[_,fantic,black])),
