@@ -33,6 +33,7 @@ let rec write_list (list:int list)=
     |h::t -> System.Console.WriteLine(h.ToString())
              write_list t   
 
+let prog1 list = List.filter (fun el -> (el%2=0)&&((count list el)%2=0)) list
 
 [<EntryPoint>]
 let main argv = read_data |> prog |> write_list // return an integer exit code
